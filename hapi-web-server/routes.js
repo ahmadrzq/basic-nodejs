@@ -54,6 +54,25 @@ const routes = [
       return `Welcome ${username}!`;
     },
   },
+  {
+    method: "POST",
+    path: "/register",
+    // Detailed notation
+    handler: (request, h) => {
+      const response = h.response("success").code(200);
+      response.type("text/plain");
+      response.header("X-Custom", "some-value");
+      return response;
+    },
+
+    // Chained notation
+    handler: (request, h) => {
+      return h
+        .response("success")
+        .type("text/plain")
+        .header("X-Custom", "some-value");
+    },
+  },
 ];
 
 module.exports = routes;
